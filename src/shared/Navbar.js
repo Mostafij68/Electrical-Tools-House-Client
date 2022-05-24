@@ -4,7 +4,7 @@ import logo from '../images/logo.png';
 
 const Navbar = () => {
     return (
-        <header className='bg-slate-100'>
+        <header className='bg-slate-100 sticky top-0 z-10'>
             <div class="navbar justify-between w-11/12 mx-auto">
                 <div class="">
                     <div class="dropdown">
@@ -13,6 +13,8 @@ const Navbar = () => {
                         </label>
                         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to="/">Home</Link></li>
+                            <li><Link to="/login">Login</Link></li>
+                            <li><Link to="/signUp">Sign-up</Link></li>
                         </ul>
                     </div>
                     <a class="btn btn-ghost normal-case lg:text-2xl md:text-2xl">
@@ -23,6 +25,8 @@ const Navbar = () => {
                 <div class="hidden lg:flex">
                     <ul class="menu menu-horizontal p-0">
                         <li><Link to="/">Home</Link></li>
+                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/signUp">Sign-up</Link></li>
                     </ul>
                 </div>
             </div>

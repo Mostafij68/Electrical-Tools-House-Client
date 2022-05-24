@@ -4,6 +4,7 @@ import Tools from './Tools';
 import Summary from './Summary';
 import Quotations from './Quotations';
 import Reviews from './Reviews';
+import Footer from '../../shared/Footer';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Summary></Summary>
             <Quotations></Quotations>
             <Reviews></Reviews>
+            <Footer></Footer>
         </div>
     );
 };
