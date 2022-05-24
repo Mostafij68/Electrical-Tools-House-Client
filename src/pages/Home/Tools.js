@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import useProducts from '../../hooks/useProducts';
 import ToolsCard from './ToolsCard';
 
 const Tools = () => {
-    const [products, setProducts] = useState([]);
-    useEffect(()=>{
-        fetch('products.json')
-        .then(res => res.json())
-        .then(data =>  setProducts(data))
-    },[]);
+    const [products, setProducts] = useProducts([]);
     return (
         <section className='my-14 w-11/12 mx-auto'>
             <h1 className='text-5xl text-secondary mb-14 text-center'>Tools</h1>
