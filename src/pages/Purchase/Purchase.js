@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useProductInfo from '../../hooks/useProductInfo';
 import Footer from '../../shared/Footer';
@@ -15,6 +16,31 @@ const Purchase = () => {
 
     const handleQuantitnyChange = event => {
         setQuantity(event.target.value)
+    };
+
+    const hanleOrder = event => {
+        event.preventDefault();
+        const userName = event.target.name.value;
+        const email = event.target.email.value;
+        const address = event.target.address.value;
+        const phone = event.target.phone.value;
+        const orderQuantity = event.target.quantity.value;
+        const productName = name;
+        const totalPrice = price * orderQuantity;
+        const order = {userName, email, address, phone, orderQuantity, productName, totalPrice};
+
+        fetch('http://localhost:5000/order', {
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+        .then(res => res.json())
+        .then(data => {
+            toast.success('You Order add successfully. Check my order page');
+            event.target.reset();
+        })
     };
 
     return (
@@ -41,26 +67,26 @@ const Purchase = () => {
                         <div class="card w-full glass">
                             <div class="card-body">
                                 <h2 class="text-3xl text-center text-secondary">Complete Your Purchase</h2>
-                                <form>
+                                <form onSubmit={hanleOrder}>
                                     <div>
                                         <label htmlFor="name">Your Name</label>
-                                        <input id='name' disabled value={user?.displayName} type="text"  class="input input-bordered w-full mb-3" />
+                                        <input name='name' id='name' disabled value={user?.displayName} type="text"  class="input input-bordered w-full mb-3" />
                                     </div>
                                     <div>
                                         <label htmlFor="email">Your Email</label>
-                                        <input id='email' disabled value={user?.email} type="email"  class="input input-bordered w-full mb-3" />
+                                        <input name='email' id='email' disabled value={user?.email} type="email"  class="input input-bordered w-full mb-3" />
                                     </div>
                                     <div>
                                         <label htmlFor="address">Address *</label>
-                                        <input id='address' placeholder='Your address' type="text"  class="input input-bordered w-full mb-3" required/>
+                                        <input name='address' id='address' placeholder='Your address' type="text"  class="input input-bordered w-full mb-3" required/>
                                     </div>
                                     <div>
                                         <label htmlFor="phone">Phone</label>
-                                        <input id='phone' placeholder='Your Phone Number' type="phone"  class="input input-bordered w-full mb-3" />
+                                        <input name='phone' id='phone' placeholder='Your Phone Number' type="phone"  class="input input-bordered w-full mb-3" />
                                     </div>
                                     <div>
                                         <label htmlFor="quantity">Order Quantity *</label>
-                                        <input onChange={handleQuantitnyChange} id='quantity' placeholder={`Minimum Order ${minOrder} Piece`} type="number"  class="input input-bordered w-full mb-3" required/>
+                                        <input name='quantity' onChange={handleQuantitnyChange} id='quantity' placeholder={`Minimum Order ${minOrder} Piece`} type="number"  class="input input-bordered w-full mb-3" required/>
                                         {
                                             parseInt(quantity) > parseInt(total) && parseInt(quantity) !== 0 && <p className='text-base text-red-500'>You can't exceed the available amount</p>
                                         }
