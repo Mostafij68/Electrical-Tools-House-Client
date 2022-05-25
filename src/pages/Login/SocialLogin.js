@@ -18,7 +18,7 @@ const SocialLogin = () => {
             {
                 error ? <p className='text-base text-red-500 pb-2'>{error.message}</p> : ''
             }
-            <button onClick={() => signInWithGoogle()} className='btn btn-primary mb-5'>{
+            <button onClick={() => signInWithGoogle()} className='btn btn-outline text-blue-600 mb-5'>{
                 loading ? <Spinner></Spinner> : 'Continue With Google'
             }
             </button>

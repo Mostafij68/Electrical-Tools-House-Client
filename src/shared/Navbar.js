@@ -1,10 +1,15 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../firebase.init';
 import logo from '../images/logo.png';
 
 const Navbar = () => {
+    const [user, loading, error] = useAuthState(auth);
+
     return (
-        <header className='bg-slate-100 sticky top-0 z-10'>
+        <header className='bg-slate-100 sticky top-0 z-20'>
             <div class="navbar justify-between w-11/12 mx-auto">
                 <div class="">
                     <div class="dropdown">
@@ -25,8 +30,19 @@ const Navbar = () => {
                 <div class="hidden lg:flex">
                     <ul class="menu menu-horizontal p-0">
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/signUp">Sign-up</Link></li>
+                        <li><Link to="/dashboard">Dashboard</Link></li>
+                        {
+                            user ?
+                            <>
+                                <li><button onClick={() => signOut(auth)} class="btn btn-ghost normal-case">Sign-Out</button></li>
+                                <li><p className='text-secondary'>{user.displayName}</p></li>
+                            </>
+                            :
+                            <>
+                                <li><Link to="/login">Login</Link></li>
+                                <li><Link to="/signUp">Sign-up</Link></li>
+                            </>
+                        }
                     </ul>
                 </div>
             </div>

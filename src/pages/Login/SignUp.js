@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Spinner from '../../shared/Spinner';
@@ -39,7 +39,7 @@ const SignUp = () => {
         <section className='flex justify-center bg-slate-200 items-center h-screen'>
             <div className="w-11/12 mx-auto flex justify-center">
                 <div class="card lg:w-96 md:w-96 sm:w-96 w-full shadow-xl glass">
-                    <div class="card-body text-center">
+                    <div class="card-body pb-0 text-center">
                         <h2 class="text-3xl text-secondary text-center mb-2">Sign-up</h2>
                         <form onSubmit={handleSignUp}>
                             <input ref={nameRef} type="text" placeholder="Your Name" class="input input-bordered w-full mb-5" />
@@ -53,6 +53,7 @@ const SignUp = () => {
                             }
                             <input className='btn btn-secondary text-white' type="submit" value="Sign up" />
                         </form>
+                        <p className='text-base mt-2'>Already have an account? <span className='text-blue-600'><Link to="/login">Login</Link></span></p>
                     </div>
                     <SocialLogin></SocialLogin>
                 </div>
