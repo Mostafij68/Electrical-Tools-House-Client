@@ -11,6 +11,7 @@ import Login from './pages/Login/Login';
 import RequireAuth from './pages/Login/RequireAuth';
 import SignUp from './pages/Login/SignUp';
 import Purchase from './pages/Purchase/Purchase';
+import AllTools from './pages/Tools/AllTools';
 import Navbar from './shared/Navbar';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/tools' element={<AllTools></AllTools>}></Route>
         <Route path='/purchase/:id' element={
           <RequireAuth>
             <Purchase></Purchase>

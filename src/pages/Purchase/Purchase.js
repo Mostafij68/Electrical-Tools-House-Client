@@ -6,6 +6,7 @@ import auth from '../../firebase.init';
 import useProductInfo from '../../hooks/useProductInfo';
 import Footer from '../../shared/Footer';
 
+
 const Purchase = () => {
     const [user, loading, error] = useAuthState(auth);
     const { id } = useParams();
@@ -38,7 +39,7 @@ const Purchase = () => {
         })
         .then(res => res.json())
         .then(data => {
-            toast.success('You Order add successfully. Check my order page');
+            toast.success("Your Order add successfully. Check 'my-order' page");
             event.target.reset();
         })
     };

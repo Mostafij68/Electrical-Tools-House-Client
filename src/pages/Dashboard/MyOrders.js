@@ -16,7 +16,7 @@ const MyOrders = () => {
 
     return (
         <section className='px-5'>
-            <h2 className='mb-4 text-xl font-semibold text-accent'>My Orders</h2>
+            <h2 className='mb-4 text-center text-xl font-semibold text-accent'>My Orders</h2>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
