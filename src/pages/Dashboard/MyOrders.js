@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
+import DeleteModal from './DeleteModal';
 
 const MyOrders = () => {
     const [user, loading, error] = useAuthState(auth);
     const [myOrders, setMyOrders] = useState([]);
-    // console.log(myOrder)
+    const [deleteId, setDeleteId] = useState('');
+
     useEffect(() => {
         const email = user?.email;
         const url = `http://localhost:5000/order?email=${email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setMyOrders(data));
-    }, []);
+    }, [myOrders]);
 
     return (
         <section className='px-5'>
@@ -31,21 +34,35 @@ const MyOrders = () => {
                     <tbody>
                         {
                             myOrders.map((myOrder, index) =>
-                            <tr key={myOrder._id} class="hover border-b">
-                                <th className='border-r'>{index + 1}</th>
-                                <td>{myOrder.productName}</td>
-                                <td>{myOrder.orderQuantity}</td>
-                                <td>${myOrder.totalPrice}</td>
-                                <td>
-                                    <button className='btn btn-primary btn-sm px-5 mr-2'>Pay</button>
-                                    <button className='btn btn-accent btn-sm '>Cancel</button>
-                                </td>
-                            </tr>
+                                <tr key={myOrder._id} class="hover border-b">
+                                    <th className='border-r'>{index + 1}</th>
+                                    <td>{myOrder.productName}</td>
+                                    <td>{myOrder.orderQuantity}</td>
+                                    <td>${myOrder.totalPrice}</td>
+                                    <td>
+                                        {
+                                        myOrder.paid ?
+                                            <>
+                                            <p className='text-green-500'>Paid</p>
+                                            <small className='text-green-500'>Your transaction id: <span className='text-orange-500'>{myOrder.transactionId}</span></small>
+                                            </> 
+                                            :
+                                            <>
+                                                <Link to={`/dashboard/payment/${myOrder._id}`}>
+                                                    <button className='btn btn-secondary btn-sm px-5 mr-2'>Pay</button>
+                                                </Link>
+                                                <a onClick={()=>setDeleteId(myOrder._id)} href="#delete" className='btn btn-accent btn-sm '>Cancel</a>
+                                                <DeleteModal>{deleteId}</DeleteModal>
+                                            </>
+                                        }
+                                    </td>
+                                </tr>
                             )
                         }
                     </tbody>
                 </table>
             </div>
+            
         </section>
     );
 };
