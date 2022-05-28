@@ -2,14 +2,19 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import AddProduct from './pages/Dashboard/AddProduct';
 import AddReview from './pages/Dashboard/AddReview';
 import Dashboard from './pages/Dashboard/Dashboard';
+import MakeAdmin from './pages/Dashboard/MakeAdmin';
+import ManageOrders from './pages/Dashboard/ManageOrders';
 import MyOrders from './pages/Dashboard/MyOrders';
 import MyProfile from './pages/Dashboard/MyProfile';
 import Payment from './pages/Dashboard/Payment';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import RequireAdmin from './pages/Login/RequireAdmin';
 import RequireAuth from './pages/Login/RequireAuth';
+import RequireUser from './pages/Login/RequireUser';
 import SignUp from './pages/Login/SignUp';
 import Purchase from './pages/Purchase/Purchase';
 import AllTools from './pages/Tools/AllTools';
@@ -32,9 +37,33 @@ function App() {
             <Dashboard></Dashboard>
           </RequireAuth>
         }>
-          <Route index element={<MyOrders></MyOrders>}></Route>
-          <Route path='/dashboard/myprofile' element={<MyProfile></MyProfile>}></Route>
-          <Route path='/dashboard/addReview' element={<AddReview></AddReview>}></Route>
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path='/dashboard/manageOrders' element={
+            <RequireAdmin>
+              <ManageOrders></ManageOrders>
+            </RequireAdmin>
+          }></Route>
+          <Route path='/dashboard/addProduct' element={
+            <RequireAdmin>
+              <AddProduct></AddProduct>
+            </RequireAdmin>
+          }></Route>
+          <Route path='/dashboard/makeAdmin' element={
+            <RequireAdmin>
+              <MakeAdmin></MakeAdmin>
+            </RequireAdmin>
+          }></Route>
+          <Route path='/dashboard/myOrders' element={
+            <RequireUser>
+              <MyOrders></MyOrders>
+            </RequireUser>
+          }></Route>
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path='/dashboard/addReview' element={
+            <RequireUser>
+              <AddReview></AddReview>
+            </RequireUser>
+          }></Route>
           <Route path='/dashboard/payment/:id' element={<Payment></Payment>}></Route>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import useGetUser from '../../hooks/useGetUser';
-import Spinner from '../../shared/Spinner';
 
 const MyProfile = () => {
     const [user, loading] = useAuthState(auth);
@@ -41,7 +40,7 @@ const MyProfile = () => {
 
     return (
         <section>
-            <h2 className='mb-4 text-center text-xl font-semibold text-accent'>My Profile</h2>
+            <h2 className='mb-4 text-center text-xl font-semibold text-accent uppercase'>User Information</h2>
             <div class="card w-full bg-base-100 shadow-xl">
                 <div class="card-body">
                     <form onSubmit={handleSaveUserInfo}>

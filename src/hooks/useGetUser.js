@@ -10,7 +10,7 @@ const useGetUser = user => {
             .then(res => res.json())
             .then(data => setGetUser(data))
         }
-    }, [user]);
+    }, []);
     return [getUser, setGetUser]
 };
 
