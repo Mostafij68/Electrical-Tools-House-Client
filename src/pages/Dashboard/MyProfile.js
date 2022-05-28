@@ -22,7 +22,7 @@ const MyProfile = () => {
         const linkedIn = event.target.linkedIn.value;
         const admin = 'false'
         const userInfo = { displayName, email, education, address, location, phone, linkedIn, admin }
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://thawing-wave-57644.herokuapp.com/user/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -48,9 +48,9 @@ const MyProfile = () => {
                             getUser ?
                                 getUser.map(u => <ul key={u._id} className='text-neutral'>
                                     <li>
-                                        <h2 class="text-secondary text-3xl">{displayName}</h2>
+                                        <h2 class="text-secondary text-3xl">{u.displayName}</h2>
                                     </li>
-                                    <li className='mt-2 text-lg'>Email: {email}</li>
+                                    <li className='mt-2 text-lg'>Email: {u.email}</li>
                                     <li className='mt-2 text-lg'>
                                         <label htmlFor="education">Education :</label>
                                         <span className='font-medium ml-2'>{u.education}</span>

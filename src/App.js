@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import Blogs from './pages/Blogs/Blogs';
 import AddProduct from './pages/Dashboard/AddProduct';
 import AddReview from './pages/Dashboard/AddReview';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -16,6 +17,8 @@ import RequireAdmin from './pages/Login/RequireAdmin';
 import RequireAuth from './pages/Login/RequireAuth';
 import RequireUser from './pages/Login/RequireUser';
 import SignUp from './pages/Login/SignUp';
+import MyPortfolio from './pages/MyPortfolio/MyPortfolio';
+import NotFound from './pages/NotFound';
 import Purchase from './pages/Purchase/Purchase';
 import AllTools from './pages/Tools/AllTools';
 import Navbar from './shared/Navbar';
@@ -66,8 +69,11 @@ function App() {
           }></Route>
           <Route path='/dashboard/payment/:id' element={<Payment></Payment>}></Route>
         </Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signUp' element={<SignUp></SignUp>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>
     </div>

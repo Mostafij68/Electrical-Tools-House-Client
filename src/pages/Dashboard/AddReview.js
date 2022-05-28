@@ -18,7 +18,7 @@ const AddReview = () => {
 
         const review = {email, displayName, rating, reviewText};
 
-        fetch('http://localhost:5000/review', {
+        fetch('https://thawing-wave-57644.herokuapp.com/review', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

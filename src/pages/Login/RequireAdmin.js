@@ -15,6 +15,7 @@ const RequireAdmin = ({children}) => {
             <Spinner></Spinner>
         </div>
     };
+    console.log(getUser[0].admin)
 
     if(getUser[0]?.admin === 'false'){
         return <Navigate to="/dashboard" state={{ from: location }} replace />

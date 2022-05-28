@@ -10,7 +10,7 @@ const Payment = () => {
     const { id } = useParams();
     const [data, setData] = useState([]);
     useEffect(() => {
-        const url = `http://localhost:5000/order/${id}`;
+        const url = `https://thawing-wave-57644.herokuapp.com/order/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setData(data));

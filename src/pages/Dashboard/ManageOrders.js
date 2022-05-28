@@ -9,7 +9,7 @@ const ManageOrders = () => {
     const [deleteId, setDeleteId] = useState('');
 
     useEffect(() => {
-        const url = `http://localhost:5000/order`;
+        const url = `https://thawing-wave-57644.herokuapp.com/order`;
         fetch(url)
             .then(res => res.json())
             .then(data => setMyOrders(data));

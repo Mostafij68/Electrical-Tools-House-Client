@@ -2,7 +2,7 @@ import React from 'react';
 
 const AddProduct = () => {
 
-    const hanldeProduct = event => {
+    const hanldeProduct = () => {
 
     };
     return (

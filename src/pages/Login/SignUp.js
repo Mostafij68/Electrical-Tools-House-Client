@@ -25,7 +25,7 @@ const SignUp = () => {
         const email = user?.user?.email;
         const admin = 'false';
         const userInfo = {displayName, email, admin};
-        fetch(`http://localhost:5000/user/${email}`,{
+        fetch(`https://thawing-wave-57644.herokuapp.com/user/${email}`,{
             method: 'PUT',
             headers: {
                 'content-type' : 'application/json'

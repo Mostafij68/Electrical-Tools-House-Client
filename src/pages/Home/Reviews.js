@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import client1 from '../../images/client1.jpg';
-import client2 from '../../images/client2.jpg';
-import client3 from '../../images/client3.jpg';
 import ReviewsCard from './ReviewsCard';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch('https://thawing-wave-57644.herokuapp.com/review')
         .then(res => res.json())
         .then(data => setReviews(data))
     }, []);

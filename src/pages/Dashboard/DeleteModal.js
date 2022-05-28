@@ -2,7 +2,7 @@ import React from 'react';
 
 const DeleteModal = ({ children }) => {
     const handleDelete = id => {
-        const url = `http://localhost:5000/order/${id}`;
+        const url = `https://thawing-wave-57644.herokuapp.com/order/${id}`;
         fetch(url, {
             method: 'DELETE'
         })

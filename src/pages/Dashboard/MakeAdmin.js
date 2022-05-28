@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const MakeAdmin = () => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/user')
+        fetch('https://thawing-wave-57644.herokuapp.com/user')
         .then(res => res.json())
         .then(data => setUsers(data))
     }, [users]);
@@ -11,7 +11,7 @@ const MakeAdmin = () => {
     const handleMakeAdmin = id =>{
         console.log(id)
         const admin = 'true';
-        const url = `http://localhost:5000/user/${id}`;
+        const url = `https://thawing-wave-57644.herokuapp.com/user/${id}`;
         fetch(url, {
             method: 'PATCH',
             headers: {

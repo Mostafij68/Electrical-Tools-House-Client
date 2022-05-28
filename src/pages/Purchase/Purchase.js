@@ -30,7 +30,7 @@ const Purchase = () => {
         const totalPrice = price * orderQuantity;
         const order = {userName, email, address, phone, orderQuantity, productName, totalPrice};
 
-        fetch('http://localhost:5000/order', {
+        fetch('https://thawing-wave-57644.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
