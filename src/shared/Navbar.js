@@ -11,10 +11,10 @@ const Navbar = () => {
     const menu = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/tools">Tools</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
         {
             user ?
                 <>
+                    <li><Link to="/dashboard">Dashboard</Link></li>
                     <li><button onClick={() => signOut(auth)} class="btn btn-ghost normal-case">Sign-Out</button></li>
                     <li><p className='text-secondary'>{user.displayName}</p></li>
                 </>

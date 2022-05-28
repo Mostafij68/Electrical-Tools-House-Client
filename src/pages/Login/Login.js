@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Spinner from '../../shared/Spinner';
@@ -17,10 +17,11 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
     const navigate = useNavigate();
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
-
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     if (user) {
-        navigate('/')
+        navigate(from, { replace: true });
     };
 
     const handleLogin = async event => {

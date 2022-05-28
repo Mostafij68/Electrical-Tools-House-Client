@@ -21,19 +21,32 @@ const SignUp = () => {
 
 
     if (user) {
-        navigate('/')
+        const displayName = user?.user?.displayName;
+        const email = user?.user?.email;
+        const admin = 'false';
+        const userInfo = {displayName, email, admin};
+        fetch(`http://localhost:5000/user/${email}`,{
+            method: 'PUT',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+        })
+        .then(res => res.json())
+        .then(data => {console.log(data)});
+        navigate('/');
     };
 
 
     const handleSignUp = async event => {
         event.preventDefault();
-        const name = nameRef.current.value;
+        const displayName = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passRef.current.value;
         await createUserWithEmailAndPassword(email, password);
-        await updateProfile({ displayName: name });
+        await updateProfile({ displayName });
         event.target.reset();
-        toast.success('Sign-up Successfully')
+        toast.success('Sign-up Successfully');
     };
     return (
         <section className='flex justify-center bg-slate-200 items-center h-screen'>
